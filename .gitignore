@@ -1,2 +1,6 @@
+# Build artifacts
 .gradle
 build/
+
+# Program output
+doc/input-example.txt.sorted

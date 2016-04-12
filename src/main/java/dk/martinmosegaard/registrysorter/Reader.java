@@ -52,7 +52,7 @@ class Reader {
 
   private int countLeadingSpaces(String line) {
     for (int i = 0; i < line.length(); ++i) {
-      if (line.charAt(i) != ' ') {
+      if (line.charAt(i) != ' ' && line.charAt(i) != '\t') {
         return i;
       }
     }
