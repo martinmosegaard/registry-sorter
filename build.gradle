@@ -1,0 +1,32 @@
+apply plugin: 'application'
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+  compile 'ch.qos.logback:logback-classic:1.1.7'
+  compile 'ch.qos.logback:logback-core:1.1.7'
+  compile 'org.slf4j:slf4j-api:1.7.20'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = 'dk.martinmosegaard.registrysorter.Main'
+
+jar {
+  version = '0.1.0'
+  manifest {
+    attributes 'Main-Class': mainClassName
+  }
+}
+
+run {
+  def arguments = []
+  if (project.hasProperty('input')) {
+    arguments.push("${input}")
+  }
+  args arguments
+}
