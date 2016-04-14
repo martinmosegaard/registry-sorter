@@ -5,4 +5,4 @@
 ## $ ./gradlew installDist
 ## $ build/install/registrysorter/bin/registrysorter doc/input-example.txt
 
-./gradlew run -Pinput=doc/input-example.txt
+./gradlew run -Pinput=$1
