@@ -20,6 +20,10 @@ class Reader {
         Paths.get(filePath), StandardCharsets.ISO_8859_1)) {
       String line = reader.readLine();
       while (line != null) {
+        if (line.trim().isEmpty()) {
+          line = reader.readLine();
+          continue;
+        }
         int indent = countLeadingSpaces(line);
         RegistryEntry entry;
         if (indent == currentIndent) {
