@@ -19,9 +19,11 @@ class Reader {
     try (BufferedReader reader = Files.newBufferedReader(
         Paths.get(filePath), StandardCharsets.ISO_8859_1)) {
       String line = reader.readLine();
+      int lineNumber = 1;
       while (line != null) {
         if (line.trim().isEmpty()) {
           line = reader.readLine();
+          ++lineNumber;
           continue;
         }
         int indent = countLeadingSpaces(line);
@@ -50,6 +52,7 @@ class Reader {
         lastEntry = entry;
 
         line = reader.readLine();
+        ++lineNumber;
       }
     }
 
