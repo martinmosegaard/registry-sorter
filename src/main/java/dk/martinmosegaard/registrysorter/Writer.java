@@ -2,13 +2,15 @@ package dk.martinmosegaard.registrysorter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 class Writer {
 
   void write(String outputPath, RegistryEntry rootEntry) throws IOException {
-    try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(Paths.get(outputPath)))) {
+    try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(
+        Paths.get(outputPath), StandardCharsets.ISO_8859_1))) {
       write(writer, rootEntry);
     }
   }

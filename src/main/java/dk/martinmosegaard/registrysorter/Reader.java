@@ -2,6 +2,7 @@ package dk.martinmosegaard.registrysorter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -15,7 +16,8 @@ class Reader {
     List<RegistryEntry> currentEntries = currentParent.getChildren();
     RegistryEntry lastEntry = null;
 
-    try (BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
+    try (BufferedReader reader = Files.newBufferedReader(
+        Paths.get(filePath), StandardCharsets.ISO_8859_1)) {
       String line = reader.readLine();
       while (line != null) {
         int indent = countLeadingSpaces(line);
