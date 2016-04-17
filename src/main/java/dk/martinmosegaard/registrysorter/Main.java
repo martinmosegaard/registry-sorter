@@ -6,7 +6,7 @@ import dk.martinmosegaard.registrysorter.view.AlphabetizeView;
 public class Main {
 
   public static void main(String[] args) {
-    AlphabetizeView view = new AlphabetizeView();
+    AlphabetizeView view = new AlphabetizeView("Registersortering");
     new AlphabetizeController(view);
     view.setVisible(true);
   }

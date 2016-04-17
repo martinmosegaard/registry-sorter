@@ -18,8 +18,8 @@ public class AlphabetizeView extends JFrame {
   private JButton alphabetizeButton;
   private JTextArea textArea;
 
-  public AlphabetizeView() {
-    setTitle("Registry Sorter");
+  public AlphabetizeView(String title) {
+    setTitle(title);
     setSize(800, 600);
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setBackground(Color.gray);
