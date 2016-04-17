@@ -5,9 +5,9 @@ import dk.martinmosegaard.registrysorter.view.AlphabetizeView;
 
 public class Main {
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     AlphabetizeView view = new AlphabetizeView();
-    AlphabetizeController controller = new AlphabetizeController(view);
+    new AlphabetizeController(view);
     view.setVisible(true);
   }
 

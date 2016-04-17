@@ -13,6 +13,8 @@ import javax.swing.WindowConstants;
 
 public class AlphabetizeView extends JFrame {
 
+  private static final long serialVersionUID = 1;
+
   private JButton alphabetizeButton;
   private JTextArea textArea;
 
