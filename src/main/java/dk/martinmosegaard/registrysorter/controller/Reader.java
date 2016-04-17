@@ -1,25 +1,22 @@
-package dk.martinmosegaard.registrysorter;
+package dk.martinmosegaard.registrysorter.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.StringReader;
 import java.util.List;
 
 import dk.martinmosegaard.registrysorter.model.RegistryEntry;
 
 class Reader {
 
-  RegistryEntry read(String filePath) throws IOException {
+  RegistryEntry read(String text) throws IOException {
     int currentIndent = 0;
     RegistryEntry root = new RegistryEntry(null, -1, "");
     RegistryEntry currentParent = root;
     List<RegistryEntry> currentEntries = currentParent.getChildren();
     RegistryEntry lastEntry = null;
 
-    try (BufferedReader reader = Files.newBufferedReader(
-        Paths.get(filePath), StandardCharsets.ISO_8859_1)) {
+    try (BufferedReader reader = new BufferedReader(new StringReader(text))) {
       String line = reader.readLine();
       int lineNumber = 1;
       while (line != null) {

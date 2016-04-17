@@ -1,4 +1,4 @@
-package dk.martinmosegaard.registrysorter;
+package dk.martinmosegaard.registrysorter.controller;
 
 import java.util.Collections;
 import java.util.Comparator;
