@@ -6,6 +6,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import dk.martinmosegaard.registrysorter.model.RegistryEntry;
+
 class Writer {
 
   void write(String outputPath, RegistryEntry rootEntry) throws IOException {

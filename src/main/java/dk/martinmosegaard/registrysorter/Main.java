@@ -1,5 +1,7 @@
 package dk.martinmosegaard.registrysorter;
 
+import dk.martinmosegaard.registrysorter.model.RegistryEntry;
+
 public class Main {
 
   public static void main(String[] args) throws Exception {

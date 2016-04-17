@@ -1,34 +1,34 @@
-package dk.martinmosegaard.registrysorter;
+package dk.martinmosegaard.registrysorter.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class RegistryEntry {
+public class RegistryEntry {
 
   private final RegistryEntry parent;
   private final int indent;
   private final String line;
   private final List<RegistryEntry> children = new ArrayList<>();
 
-  RegistryEntry(RegistryEntry parent, int indent, String line) {
+  public RegistryEntry(RegistryEntry parent, int indent, String line) {
     this.parent = parent;
     this.indent = indent;
     this.line = line;
   }
 
-  RegistryEntry getParent() {
+  public RegistryEntry getParent() {
     return parent;
   }
 
-  int getIndent() {
+  public int getIndent() {
     return indent;
   }
 
-  String getLine() {
+  public String getLine() {
     return line;
   }
 
-  List<RegistryEntry> getChildren() {
+  public List<RegistryEntry> getChildren() {
     return children;
   }
 

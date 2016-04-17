@@ -3,6 +3,8 @@ package dk.martinmosegaard.registrysorter;
 import java.util.Collections;
 import java.util.Comparator;
 
+import dk.martinmosegaard.registrysorter.model.RegistryEntry;
+
 class Sorter implements Comparator<RegistryEntry> {
 
   void sort(RegistryEntry entry) {

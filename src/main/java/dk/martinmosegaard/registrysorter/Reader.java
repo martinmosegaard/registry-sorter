@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+import dk.martinmosegaard.registrysorter.model.RegistryEntry;
+
 class Reader {
 
   RegistryEntry read(String filePath) throws IOException {
