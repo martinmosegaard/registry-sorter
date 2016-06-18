@@ -4,7 +4,6 @@ import org.junit.Before
 import org.junit.Test
 import static org.junit.Assert.*
 
-import dk.martinmosegaard.registrysorter.controller.Reader
 import dk.martinmosegaard.registrysorter.model.RegistryEntry
 
 class ReaderTest {

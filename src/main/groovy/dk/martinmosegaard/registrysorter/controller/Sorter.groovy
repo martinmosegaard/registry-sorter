@@ -8,12 +8,12 @@ class Sorter implements Comparator<RegistryEntry> {
     entry.children.each { RegistryEntry child ->
       sort(child)
     }
-    Collections.sort(entry.getChildren(), this)
+    Collections.sort(entry.children, this)
   }
 
   @Override
   int compare(RegistryEntry e1, RegistryEntry e2) {
-    return e1.getLine().toLowerCase().compareTo(e2.getLine().toLowerCase())
+    return e1.line.toLowerCase().compareTo(e2.line.toLowerCase())
   }
 
 }
