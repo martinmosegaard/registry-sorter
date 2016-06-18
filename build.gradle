@@ -2,7 +2,7 @@ apply plugin: 'application'
 apply plugin: 'groovy'
 
 repositories {
-    jcenter()
+  jcenter()
 }
 
 dependencies {
