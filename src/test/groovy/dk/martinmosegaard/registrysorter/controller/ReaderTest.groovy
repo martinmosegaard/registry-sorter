@@ -24,37 +24,37 @@ class ReaderTest {
 c
 a"""
     RegistryEntry entry = reader.read(text)
-    assertNull("Root entry should not have a parent", entry.getParent())
-    assertEquals("Root entry child count", 3, entry.getChildren().size())
-    assertEquals("Root entry indent", -1, entry.getIndent())
-    assertEquals("Root entry line", "", entry.getLine())
+    assertNull("Root entry should not have a parent", entry.parent)
+    assertEquals("Root entry child count", 3, entry.children.size())
+    assertEquals("Root entry indent", -1, entry.indent)
+    assertEquals("Root entry line", "", entry.line)
 
-    assertEquals("First line", "b", entry.getChildren().get(0).getLine())
-    assertEquals("First line child count", 2, entry.getChildren().get(0).getChildren().size())
+    assertEquals("First line", "b", entry.children.get(0).line)
+    assertEquals("First line child count", 2, entry.children.get(0).children.size())
 
-    assertEquals("Second line", "c", entry.getChildren().get(1).getLine())
-    assertEquals("Second line child count", 0, entry.getChildren().get(1).getChildren().size())
+    assertEquals("Second line", "c", entry.children.get(1).line)
+    assertEquals("Second line child count", 0, entry.children.get(1).children.size())
 
-    assertEquals("Third line", "a", entry.getChildren().get(2).getLine())
-    assertEquals("Third line child count", 0, entry.getChildren().get(2).getChildren().size())
+    assertEquals("Third line", "a", entry.children.get(2).line)
+    assertEquals("Third line child count", 0, entry.children.get(2).children.size())
   }
 
   @Test void testReadEmpty() throws Exception {
     def text = ''
     RegistryEntry entry = reader.read(text)
-    assertNull("Root entry should not have a parent", entry.getParent())
-    assertEquals("Root entry child count", 0, entry.getChildren().size())
-    assertEquals("Root entry indent", -1, entry.getIndent())
-    assertEquals("Root entry line", "", entry.getLine())
+    assertNull("Root entry should not have a parent", entry.parent)
+    assertEquals("Root entry child count", 0, entry.children.size())
+    assertEquals("Root entry indent", -1, entry.indent)
+    assertEquals("Root entry line", "", entry.line)
   }
 
   @Test void testReadNull() throws Exception {
     def text = null
     RegistryEntry entry = reader.read(text)
-    assertNull("Root entry should not have a parent", entry.getParent())
-    assertEquals("Root entry child count", 0, entry.getChildren().size())
-    assertEquals("Root entry indent", -1, entry.getIndent())
-    assertEquals("Root entry line", "", entry.getLine())
+    assertNull("Root entry should not have a parent", entry.parent)
+    assertEquals("Root entry child count", 0, entry.children.size())
+    assertEquals("Root entry indent", -1, entry.indent)
+    assertEquals("Root entry line", "", entry.line)
   }
 
 }
