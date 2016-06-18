@@ -1,33 +1,33 @@
-package dk.martinmosegaard.registrysorter.controller;
+package dk.martinmosegaard.registrysorter.controller
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent
+import java.awt.event.ActionListener
 
-import dk.martinmosegaard.registrysorter.model.RegistryEntry;
-import dk.martinmosegaard.registrysorter.view.AlphabetizeView;
+import dk.martinmosegaard.registrysorter.model.RegistryEntry
+import dk.martinmosegaard.registrysorter.view.AlphabetizeView
 
-public class AlphabetizeController implements ActionListener {
+class AlphabetizeController implements ActionListener {
 
-  private final AlphabetizeView view;
+  private final AlphabetizeView view
 
-  public AlphabetizeController(AlphabetizeView view) {
-    this.view = view;
-    view.setListener(this);
+  AlphabetizeController(AlphabetizeView view) {
+    this.view = view
+    view.listener = this
   }
 
   @Override
-  public void actionPerformed(ActionEvent event) {
+  void actionPerformed(ActionEvent event) {
     try {
-      String text = view.getText();
-      Reader reader = new Reader();
-      RegistryEntry rootEntry = reader.read(text);
-      Sorter sorter = new Sorter();
-      sorter.sort(rootEntry);
-      Writer writer = new Writer();
-      String sortedText = writer.write(rootEntry);
-      view.setText(sortedText);
+      String text = view.text
+      def reader = new Reader()
+      RegistryEntry rootEntry = reader.read(text)
+      def sorter = new Sorter()
+      sorter.sort(rootEntry)
+      def writer = new Writer()
+      String sortedText = writer.write(rootEntry)
+      view.text = sortedText
     } catch (Exception e) {
-      e.printStackTrace();
+      e.printStackTrace()
     }
   }
 
