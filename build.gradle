@@ -20,7 +20,7 @@ targetCompatibility = 1.8
 mainClassName = 'dk.martinmosegaard.registrysorter.Main'
 
 jar {
-  version = '0.1.0'
+  version = '1.0.0'
   manifest {
     attributes 'Main-Class': mainClassName
   }
