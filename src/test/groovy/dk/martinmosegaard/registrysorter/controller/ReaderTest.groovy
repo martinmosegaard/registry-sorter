@@ -1,7 +1,9 @@
 package dk.martinmosegaard.registrysorter.controller
 
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.ExpectedException
 import static org.junit.Assert.*
 
 import dk.martinmosegaard.registrysorter.model.RegistryEntry
@@ -10,8 +12,37 @@ class ReaderTest {
 
   Reader reader
 
+  @Rule public ExpectedException thrown = ExpectedException.none()
+
   @Before void setup() {
     reader = new Reader()
+  }
+
+  @Test void testCountLeadingSpaces() {
+    assertEquals("Line with no spaces",    0, reader.countLeadingSpaces("no leading"))
+    assertEquals("Line with 3 spaces",     3, reader.countLeadingSpaces("   three leading"))
+    assertEquals("Line with 1 tab",        1, reader.countLeadingSpaces("\tone tab"))
+    assertEquals("Line with mixed spaces", 4, reader.countLeadingSpaces(" \t  mixed"))
+  }
+
+  @Test void testCountLeadingSpacesEmpty() {
+    thrown.expect(RuntimeException.class)
+    reader.countLeadingSpaces("")
+  }
+
+  @Test void testCountLeadingSpacesWhitespace() {
+    thrown.expect(RuntimeException.class)
+    reader.countLeadingSpaces("   ")
+  }
+
+  @Test void testCountLeadingSpacesWhitespaceTab() {
+    thrown.expect(RuntimeException.class)
+    reader.countLeadingSpaces("\t\t\t")
+  }
+
+  @Test void testCountLeadingSpacesWhitespaceMixed() {
+    thrown.expect(RuntimeException.class)
+    reader.countLeadingSpaces("\t  \t")
   }
 
   @Test void testRead() throws Exception {
