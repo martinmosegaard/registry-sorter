@@ -1,14 +1,14 @@
-package dk.martinmosegaard.registrysorter;
+package dk.martinmosegaard.registrysorter
 
-import dk.martinmosegaard.registrysorter.controller.AlphabetizeController;
-import dk.martinmosegaard.registrysorter.view.AlphabetizeView;
+import dk.martinmosegaard.registrysorter.controller.AlphabetizeController
+import dk.martinmosegaard.registrysorter.view.AlphabetizeView
 
-public class Main {
+class Main {
 
-  public static void main(String[] args) {
-    AlphabetizeView view = new AlphabetizeView("Registersortering");
-    new AlphabetizeController(view);
-    view.setVisible(true);
+  static void main(String[] args) {
+    def view = new AlphabetizeView('Registersortering')
+    new AlphabetizeController(view)
+    view.visible = true
   }
 
 }
