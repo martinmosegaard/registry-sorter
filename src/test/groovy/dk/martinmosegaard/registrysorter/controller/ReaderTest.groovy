@@ -20,6 +20,7 @@ class ReaderTest {
 """b
   3
   4
+
 c
 a"""
     RegistryEntry entry = reader.read(text)

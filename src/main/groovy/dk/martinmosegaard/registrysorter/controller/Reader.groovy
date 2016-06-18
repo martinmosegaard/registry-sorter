@@ -20,15 +20,8 @@ class Reader {
       return root;
     }
 
-    try (BufferedReader reader = new BufferedReader(new StringReader(text))) {
-      String line = reader.readLine();
-      int lineNumber = 1;
-      while (line != null) {
-        if (line.trim().isEmpty()) {
-          line = reader.readLine();
-          ++lineNumber;
-          continue;
-        }
+    text.eachLine { line ->
+      if (!line.trim().isEmpty()) {
         int indent = countLeadingSpaces(line);
         RegistryEntry entry;
         if (indent == currentIndent) {
@@ -53,9 +46,6 @@ class Reader {
         }
         currentEntries.add(entry);
         lastEntry = entry;
-
-        line = reader.readLine();
-        ++lineNumber;
       }
     }
 
