@@ -16,6 +16,10 @@ class Reader {
     List<RegistryEntry> currentEntries = currentParent.getChildren();
     RegistryEntry lastEntry = null;
 
+    if (text == null) {
+      return root;
+    }
+
     try (BufferedReader reader = new BufferedReader(new StringReader(text))) {
       String line = reader.readLine();
       int lineNumber = 1;

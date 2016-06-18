@@ -25,6 +25,8 @@ a"""
     RegistryEntry entry = reader.read(text)
     assertNull("Root entry should not have a parent", entry.getParent())
     assertEquals("Root entry child count", 3, entry.getChildren().size())
+    assertEquals("Root entry indent", -1, entry.getIndent())
+    assertEquals("Root entry line", "", entry.getLine())
 
     assertEquals("First line", "b", entry.getChildren().get(0).getLine())
     assertEquals("First line child count", 2, entry.getChildren().get(0).getChildren().size())
@@ -34,6 +36,24 @@ a"""
 
     assertEquals("Third line", "a", entry.getChildren().get(2).getLine())
     assertEquals("Third line child count", 0, entry.getChildren().get(2).getChildren().size())
+  }
+
+  @Test void testReadEmpty() throws Exception {
+    def text = ''
+    RegistryEntry entry = reader.read(text)
+    assertNull("Root entry should not have a parent", entry.getParent())
+    assertEquals("Root entry child count", 0, entry.getChildren().size())
+    assertEquals("Root entry indent", -1, entry.getIndent())
+    assertEquals("Root entry line", "", entry.getLine())
+  }
+
+  @Test void testReadNull() throws Exception {
+    def text = null
+    RegistryEntry entry = reader.read(text)
+    assertNull("Root entry should not have a parent", entry.getParent())
+    assertEquals("Root entry child count", 0, entry.getChildren().size())
+    assertEquals("Root entry indent", -1, entry.getIndent())
+    assertEquals("Root entry line", "", entry.getLine())
   }
 
 }
