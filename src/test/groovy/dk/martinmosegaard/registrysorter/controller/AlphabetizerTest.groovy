@@ -3,12 +3,10 @@ package dk.martinmosegaard.registrysorter.controller
 import spock.lang.Specification
 
 import dk.martinmosegaard.registrysorter.model.RegistryEntry
-import dk.martinmosegaard.registrysorter.view.AlphabetizeView
 
-class AlphabetizeControllerTest extends Specification {
+class AlphabetizerTest extends Specification {
 
-  def view = Mock(AlphabetizeView)
-  def subject = new AlphabetizeController(view)
+  def subject = new Alphabetizer()
 
   def 'alphabetize empty string returns empty string'() {
     setup:
@@ -30,14 +28,14 @@ class AlphabetizeControllerTest extends Specification {
 
   def 'alphabetize nested list returns sorted, nested list'() {
     setup:
-    def inputFile = new File(AlphabetizeControllerTest.getResource('/input0.txt').file)
+    def inputFile = new File(AlphabetizerTest.getResource('/input0.txt').file)
     def text = inputFile.text
     when:
     def result = subject.alphabetize(text)
     then:
-    def sortedFile = new File(AlphabetizeControllerTest.getResource('/input0.txt.sorted').file)
+    def sortedFile = new File(AlphabetizerTest.getResource('/input0.txt.sorted').file)
     def sortedText = sortedFile.text
-    result == sortedText 
+    result == sortedText
   }
 
 }
