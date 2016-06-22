@@ -29,12 +29,12 @@ class AlphabetizeView extends JFrame {
     getContentPane().add(alphabetizeButton, BorderLayout.NORTH)
 
     JPanel topPanel = new JPanel()
-    topPanel.setLayout(new BorderLayout())
+    topPanel.layout = new BorderLayout()
     getContentPane().add(topPanel, BorderLayout.CENTER)
 
     textArea = new JTextArea()
     JScrollPane scroller = new JScrollPane()
-    scroller.getViewport().add(textArea)
+    scroller.viewport.add(textArea)
     topPanel.add(scroller, BorderLayout.CENTER)
   }
 
@@ -43,11 +43,11 @@ class AlphabetizeView extends JFrame {
   }
 
   String getText() {
-    return textArea.getText()
+    return textArea.text
   }
 
   void setText(String text) {
-    textArea.setText(text)
+    textArea.text = text
   }
 
 }
