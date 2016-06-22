@@ -30,3 +30,10 @@ jar {
     attributes 'Main-Class': mainClassName
   }
 }
+
+cobertura {
+  coverageExcludes = [
+    '.*dk.martinmosegaard.registrysorter.view.*',
+    '.*dk.martinmosegaard.registrysorter.Main'
+  ]
+}
