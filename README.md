@@ -12,5 +12,6 @@ $ build/install/registry-sorter/bin/registry-sorter
 
 ```sh
 $ ./gradlew cobertura
+$ open build/reports/tests/index.html
 $ open build/reports/cobertura/index.html
 ```

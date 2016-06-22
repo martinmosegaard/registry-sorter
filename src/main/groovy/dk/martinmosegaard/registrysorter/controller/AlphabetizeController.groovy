@@ -19,16 +19,21 @@ class AlphabetizeController implements ActionListener {
   void actionPerformed(ActionEvent event) {
     try {
       String text = view.text
-      def reader = new Reader()
-      RegistryEntry rootEntry = reader.read(text)
-      def sorter = new Sorter()
-      sorter.sort(rootEntry)
-      def writer = new Writer()
-      String sortedText = writer.write(rootEntry)
+      String sortedText = alphabetize(text)
       view.text = sortedText
     } catch (Exception e) {
       e.printStackTrace()
     }
+  }
+
+  String alphabetize(String text) {
+    def reader = new Reader()
+    RegistryEntry rootEntry = reader.read(text)
+    def sorter = new Sorter()
+    sorter.sort(rootEntry)
+    def writer = new Writer()
+    String sortedText = writer.write(rootEntry)
+    return sortedText
   }
 
 }
