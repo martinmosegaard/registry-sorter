@@ -2,8 +2,6 @@ package dk.martinmosegaard.registrysorter.controller
 
 import spock.lang.Specification
 
-import dk.martinmosegaard.registrysorter.model.RegistryEntry
-
 class AlphabetizerTest extends Specification {
 
   def subject = new Alphabetizer()

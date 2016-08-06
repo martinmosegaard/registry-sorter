@@ -15,3 +15,11 @@ $ ./gradlew cobertura
 $ open build/reports/tests/index.html
 $ open build/reports/cobertura/index.html
 ```
+
+## Check
+
+```sh
+$ ./gradlew check
+$ open build/reports/codenarc/main.html
+$ open build/reports/codenarc/test.html
+```
