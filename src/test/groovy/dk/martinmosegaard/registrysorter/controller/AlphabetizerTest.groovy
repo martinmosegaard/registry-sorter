@@ -17,11 +17,12 @@ class AlphabetizerTest extends Specification {
 
   def 'alphabetize lines returns sorted list'() {
     setup:
-    def text = ['bee', 'cat', 'car', 'ape'].join('\n')
+    def text = ['bee', 'cat', 'car', 'ape'].join(System.lineSeparator())
     when:
     def result = subject.alphabetize(text)
     then:
-    result == ['ape', 'bee', 'car', 'cat'].join('\n') + '\n'
+    result == ['ape', 'bee', 'car', 'cat'].join(System.lineSeparator()) +
+        System.lineSeparator()
   }
 
   def 'alphabetize nested list returns sorted, nested list'() {
