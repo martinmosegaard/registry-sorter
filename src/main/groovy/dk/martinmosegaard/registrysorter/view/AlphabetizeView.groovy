@@ -14,12 +14,15 @@ import javax.swing.WindowConstants
 
 import dk.martinmosegaard.registrysorter.controller.Alphabetizer
 
+/**
+ * Main application window.
+ */
 class AlphabetizeView extends JFrame {
 
   private static final long serialVersionUID = 1
 
-  private JButton alphabetizeButton
-  private JTextArea textArea
+  private final JButton alphabetizeButton
+  private final JTextArea textArea
   def alphabetizer = new Alphabetizer()
 
   AlphabetizeView(String title) {
@@ -27,14 +30,14 @@ class AlphabetizeView extends JFrame {
     setSize(800, 600)
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)
     setBackground(Color.gray)
-    getContentPane().setLayout(new BorderLayout())
+    contentPane.setLayout(new BorderLayout())
 
     alphabetizeButton = new JButton('Alfabetiser')
-    getContentPane().add(alphabetizeButton, BorderLayout.NORTH)
+    contentPane.add(alphabetizeButton, BorderLayout.NORTH)
 
     JPanel topPanel = new JPanel()
     topPanel.layout = new BorderLayout()
-    getContentPane().add(topPanel, BorderLayout.CENTER)
+    contentPane.add(topPanel, BorderLayout.CENTER)
 
     textArea = new JTextArea()
     JScrollPane scroller = new JScrollPane()
@@ -48,13 +51,9 @@ class AlphabetizeView extends JFrame {
     alphabetizeButton.addActionListener(new ActionListener() {
       @Override
       void actionPerformed(ActionEvent event) {
-        try {
-          String text = textArea.text
-          String sortedText = alphabetizer.alphabetize(text)
-          textArea.text = sortedText
-        } catch (Exception e) {
-          e.printStackTrace()
-        }
+        String text = textArea.text
+        String sortedText = alphabetizer.alphabetize(text)
+        textArea.text = sortedText
       }
     })
   }

@@ -2,9 +2,12 @@ package dk.martinmosegaard.registrysorter.controller
 
 import spock.lang.Specification
 
+/**
+ * Unit test the Alphabetizer.
+ */
 class AlphabetizerTest extends Specification {
 
-  def subject = new Alphabetizer()
+  private final subject = new Alphabetizer()
 
   def 'alphabetize empty string returns empty string'() {
     setup:

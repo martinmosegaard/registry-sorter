@@ -2,6 +2,9 @@ package dk.martinmosegaard.registrysorter.controller
 
 import dk.martinmosegaard.registrysorter.model.RegistryEntry
 
+/**
+ * Sorts registry entries by comparing the contents of lines.
+ */
 class Sorter implements Comparator<RegistryEntry> {
 
   void sort(RegistryEntry entry) {
@@ -13,7 +16,7 @@ class Sorter implements Comparator<RegistryEntry> {
 
   @Override
   int compare(RegistryEntry e1, RegistryEntry e2) {
-    return e1.line.toLowerCase().compareTo(e2.line.toLowerCase())
+    e1.line.toLowerCase().compareTo(e2.line.toLowerCase())
   }
 
 }

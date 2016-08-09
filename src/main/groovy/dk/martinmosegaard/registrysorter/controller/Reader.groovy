@@ -2,11 +2,14 @@ package dk.martinmosegaard.registrysorter.controller
 
 import dk.martinmosegaard.registrysorter.model.RegistryEntry
 
+/**
+ * Reads text into a ReaderEntry model.
+ */
 class Reader {
 
   RegistryEntry read(String text) throws IOException {
     int currentIndent = 0
-    RegistryEntry root = new RegistryEntry(parent: null, indent: -1, line: "")
+    RegistryEntry root = new RegistryEntry(parent:null, indent:-1, line:'')
     RegistryEntry currentParent = root
     List<RegistryEntry> currentEntries = currentParent.children
     RegistryEntry lastEntry = null
@@ -21,20 +24,20 @@ class Reader {
         RegistryEntry entry
         if (indent == currentIndent) {
           // Add to current entries
-          entry = new RegistryEntry(parent: currentParent, indent: indent, line: line)
+          entry = new RegistryEntry(parent:currentParent, indent:indent, line:line)
         } else if (indent > currentIndent) {
           // New subsection to be added as a child to last entry
-          entry = new RegistryEntry(parent: lastEntry, indent: indent, line: line)
+          entry = new RegistryEntry(parent:lastEntry, indent:indent, line:line)
           currentIndent = indent
           currentEntries = lastEntry.children
           currentParent = lastEntry
         } else {
           // Back to previous level of indentation
           RegistryEntry parent = currentParent.parent
-          while (parent.getIndent() >= indent) {
+          while (parent.indent >= indent) {
             parent = parent.parent
           }
-          entry = new RegistryEntry(parent: parent, indent: indent, line: line)
+          entry = new RegistryEntry(parent:parent, indent:indent, line:line)
           currentIndent = indent
           currentEntries = parent.children
           currentParent = parent
@@ -44,7 +47,7 @@ class Reader {
       }
     }
 
-    return root
+    root
   }
 
   int countLeadingSpaces(String line) {
@@ -54,7 +57,7 @@ class Reader {
       }
     }
     // A completely blank line
-    throw new RuntimeException("Did not expect a completely blank line")
+    0
   }
 
 }

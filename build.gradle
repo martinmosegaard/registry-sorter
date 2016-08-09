@@ -39,3 +39,7 @@ cobertura {
     '.*dk.martinmosegaard.registrysorter.Main'
   ]
 }
+
+codenarc {
+  config = project.resources.text.fromFile('config/codenarc/codenarc.groovy')
+}

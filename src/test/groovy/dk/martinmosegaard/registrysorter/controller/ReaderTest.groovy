@@ -1,90 +1,84 @@
 package dk.martinmosegaard.registrysorter.controller
 
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.ExpectedException
-import static org.junit.Assert.*
 
 import dk.martinmosegaard.registrysorter.model.RegistryEntry
 
+/**
+ * Unit test the Reader.
+ */
 class ReaderTest {
 
-  Reader reader
-
-  @Rule public ExpectedException thrown = ExpectedException.none()
+  private Reader reader
 
   @Before void setup() {
     reader = new Reader()
   }
 
   @Test void testCountLeadingSpaces() {
-    assertEquals("Line with no spaces",    0, reader.countLeadingSpaces("no leading"))
-    assertEquals("Line with 3 spaces",     3, reader.countLeadingSpaces("   three leading"))
-    assertEquals("Line with 1 tab",        1, reader.countLeadingSpaces("\tone tab"))
-    assertEquals("Line with mixed spaces", 4, reader.countLeadingSpaces(" \t  mixed"))
+    assert reader.countLeadingSpaces('no leading') == 0 : 'Line with no spaces'
+    assert reader.countLeadingSpaces('   three leading') == 3 : 'Line with 3 spaces'
+    assert reader.countLeadingSpaces('\tone tab') == 1 : 'Line with 1 tab'
+    assert reader.countLeadingSpaces(' \t  mixed') == 4 : 'Line with mixed spaces'
   }
 
   @Test void testCountLeadingSpacesEmpty() {
-    thrown.expect(RuntimeException.class)
-    reader.countLeadingSpaces("")
+    assert reader.countLeadingSpaces('') == 0 : 'Empty line'
   }
 
   @Test void testCountLeadingSpacesWhitespace() {
-    thrown.expect(RuntimeException.class)
-    reader.countLeadingSpaces("   ")
+    assert reader.countLeadingSpaces('   ') == 0 : 'Whitespace line'
   }
 
   @Test void testCountLeadingSpacesWhitespaceTab() {
-    thrown.expect(RuntimeException.class)
-    reader.countLeadingSpaces("\t\t\t")
+    assert reader.countLeadingSpaces('\t\t\t') == 0 : 'Line with tabs'
   }
 
   @Test void testCountLeadingSpacesWhitespaceMixed() {
-    thrown.expect(RuntimeException.class)
-    reader.countLeadingSpaces("\t  \t")
+    assert reader.countLeadingSpaces('\t  \t') == 0 : 'Line with mixed whitespace'
   }
 
-  @Test void testRead() throws Exception {
+  @Test void testRead() {
     def text =
-"""b
+'''b
   3
   4
 
 c
-a"""
+a'''
     RegistryEntry entry = reader.read(text)
-    assertNull("Root entry should not have a parent", entry.parent)
-    assertEquals("Root entry child count", 3, entry.children.size())
-    assertEquals("Root entry indent", -1, entry.indent)
-    assertEquals("Root entry line", "", entry.line)
+    assert entry.parent == null : 'Root entry should not have a parent'
+    assert entry.children.size() == 3 : 'Root entry child count'
+    assert entry.indent == -1 : 'Root entry indent'
+    assert entry.line == '' : 'Root entry line'
 
-    assertEquals("First line", "b", entry.children.get(0).line)
-    assertEquals("First line child count", 2, entry.children.get(0).children.size())
+    assert entry.children.get(0).line == 'b' : 'First line'
+    assert entry.children.get(0).children.size() == 2 : 'First line child count'
 
-    assertEquals("Second line", "c", entry.children.get(1).line)
-    assertEquals("Second line child count", 0, entry.children.get(1).children.size())
+    assert entry.children.get(1).line == 'c' : 'Second line'
+    assert entry.children.get(1).children.size() == 0 : 'Second line child count'
 
-    assertEquals("Third line", "a", entry.children.get(2).line)
-    assertEquals("Third line child count", 0, entry.children.get(2).children.size())
+    assert entry.children.get(2).line == 'a'
+    assert entry.children.get(2).children.size() == 0 : 'Third line child count'
   }
 
-  @Test void testReadEmpty() throws Exception {
+  @Test void testReadEmpty() {
     def text = ''
     RegistryEntry entry = reader.read(text)
-    assertNull("Root entry should not have a parent", entry.parent)
-    assertEquals("Root entry child count", 0, entry.children.size())
-    assertEquals("Root entry indent", -1, entry.indent)
-    assertEquals("Root entry line", "", entry.line)
+    assert entry.parent == null : 'Root entry should not have a parent'
+    assert entry.children.size() == 0 : 'Root entry child count'
+    assert entry.indent == -1 : 'Root entry indent'
+    assert entry.line == '' : 'Root entry line'
   }
 
-  @Test void testReadNull() throws Exception {
+  @Test void testReadNull() {
     def text = null
     RegistryEntry entry = reader.read(text)
-    assertNull("Root entry should not have a parent", entry.parent)
-    assertEquals("Root entry child count", 0, entry.children.size())
-    assertEquals("Root entry indent", -1, entry.indent)
-    assertEquals("Root entry line", "", entry.line)
+    assert entry.parent == null : 'Root entry should not have a parent'
+    assert entry.children.size() == 0 : 'Root entry child count'
+    assert entry.indent == -1 : 'Root entry indent'
+    assert entry.line == '' : 'Root entry line'
   }
 
 }
