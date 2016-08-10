@@ -51,4 +51,24 @@ class SorterTest extends Specification {
     assert bee.children.get(1) == stingy : 'Second bee child before sorting'
   }
 
+  def 'sorting with quotes'() {
+    setup:
+    RegistryEntry entry = new RegistryEntry(parent:null, indent:-1, line:'')
+    RegistryEntry ape = new RegistryEntry(parent:entry, indent:2, line:'ape')
+    RegistryEntry bee = new RegistryEntry(parent:entry, indent:2, line:"'bee'")
+    RegistryEntry cat = new RegistryEntry(parent:entry, indent:2, line:'"cat"')
+    entry.children.add(bee)
+    entry.children.add(cat)
+    entry.children.add(ape)
+
+    when:
+    sorter.sort(entry)
+
+    then:
+    assert entry.children.size() == 3 : 'Root child count after sorting'
+    assert entry.children.get(0) == ape : 'First root child after sorting'
+    assert entry.children.get(1) == bee : 'Second root child after sorting'
+    assert entry.children.get(2) == cat : 'Third root child after sorting'
+  }
+
 }
