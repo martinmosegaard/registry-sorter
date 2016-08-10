@@ -1,22 +1,18 @@
 package dk.martinmosegaard.registrysorter.controller
 
-import org.junit.Before
-import org.junit.Test
+import spock.lang.Specification
 
 import dk.martinmosegaard.registrysorter.model.RegistryEntry
 
 /**
  * Unit test the Sorter.
  */
-class SorterTest {
+class SorterTest extends Specification {
 
-  private Sorter sorter
+  private final sorter = new Sorter()
 
-  @Before void setup() {
-    sorter = new Sorter()
-  }
-
-  @Test void testSort() {
+  def 'sorting a list with children'() {
+    setup:
     RegistryEntry entry = new RegistryEntry(parent:null, indent:-1, line:'')
 
     RegistryEntry ape = new RegistryEntry(parent:entry, indent:2, line:'ape')
@@ -40,9 +36,12 @@ class SorterTest {
     assert bee.children.size() == 2 : 'Bee child count before sorting'
     assert bee.children.get(0) == stingy : 'First bee child before sorting'
     assert bee.children.get(1) == buzzer : 'Second bee child before sorting'
+    Sorter sorter = new Sorter()
 
+    when:
     sorter.sort(entry)
 
+    then:
     assert entry.children.size() == 3 : 'Root child count after sorting'
     assert entry.children.get(0) == ape : 'First root child after sorting'
     assert entry.children.get(1) == bee : 'Second root child after sorting'
