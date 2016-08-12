@@ -1,45 +1,74 @@
 package dk.martinmosegaard.registrysorter.controller
 
-import org.junit.Before
-import org.junit.Test
+import spock.lang.Specification
 
 import dk.martinmosegaard.registrysorter.model.RegistryEntry
 
 /**
  * Unit test the Reader.
  */
-class ReaderTest {
+class ReaderTest extends Specification {
 
-  private Reader reader
+  private final reader = new Reader()
 
-  @Before void setup() {
-    reader = new Reader()
+  def 'count leading spaces when there are none'() {
+    when:
+    def line = 'no leading'
+    then:
+    assert reader.countLeadingSpaces(line) == 0 : 'Line with no spaces'
   }
 
-  @Test void testCountLeadingSpaces() {
-    assert reader.countLeadingSpaces('no leading') == 0 : 'Line with no spaces'
-    assert reader.countLeadingSpaces('   three leading') == 3 : 'Line with 3 spaces'
-    assert reader.countLeadingSpaces('\tone tab') == 1 : 'Line with 1 tab'
-    assert reader.countLeadingSpaces(' \t  mixed') == 4 : 'Line with mixed spaces'
+  def 'count leading spaces when there are some'() {
+    when:
+    def line = '   three leading'
+    then:
+    assert reader.countLeadingSpaces(line) == 3 : 'Line with 3 spaces'
   }
 
-  @Test void testCountLeadingSpacesEmpty() {
-    assert reader.countLeadingSpaces('') == 0 : 'Empty line'
+  def 'count leading spaces with a tab'() {
+    when:
+    def line = '\tone tab'
+    then:
+    assert reader.countLeadingSpaces(line) == 1 : 'Line with 1 tab'
   }
 
-  @Test void testCountLeadingSpacesWhitespace() {
-    assert reader.countLeadingSpaces('   ') == 0 : 'Whitespace line'
+  def 'count leading spaces with mixed tab and spaces'() {
+    when:
+    def line = ' \t  mixed'
+    then:
+    assert reader.countLeadingSpaces(line) == 4 : 'Line with mixed spaces'
   }
 
-  @Test void testCountLeadingSpacesWhitespaceTab() {
-    assert reader.countLeadingSpaces('\t\t\t') == 0 : 'Line with tabs'
+  def 'count leading spaces for an empty line'() {
+    when:
+    def line = ''
+    then:
+    assert reader.countLeadingSpaces(line) == 0 : 'Empty line'
   }
 
-  @Test void testCountLeadingSpacesWhitespaceMixed() {
-    assert reader.countLeadingSpaces('\t  \t') == 0 : 'Line with mixed whitespace'
+  def 'count leading spaces for a whitespace line'() {
+    when:
+    def line = '   '
+    then:
+    assert reader.countLeadingSpaces(line) == 0 : 'Whitespace line'
   }
 
-  @Test void testRead() {
+  def 'count leading spaces for a whitespace tab line'() {
+    when:
+    def line = '\t\t\t'
+    then:
+    assert reader.countLeadingSpaces(line) == 0 : 'Line with tabs'
+  }
+
+  def 'count leading spaces for a mixed whitespace line'() {
+    when:
+    def line = '\t  \t'
+    then:
+    assert reader.countLeadingSpaces(line) == 0 : 'Line with mixed whitespace'
+  }
+
+  def 'can read text'() {
+    setup:
     def text =
 '''b
   3
@@ -47,7 +76,10 @@ class ReaderTest {
 
 c
 a'''
+    when:
     RegistryEntry entry = reader.read(text)
+
+    then:
     assert entry.parent == null : 'Root entry should not have a parent'
     assert entry.children.size() == 3 : 'Root entry child count'
     assert entry.indent == -1 : 'Root entry indent'
@@ -63,18 +95,24 @@ a'''
     assert entry.children.get(2).children.size() == 0 : 'Third line child count'
   }
 
-  @Test void testReadEmpty() {
+  def 'can read empty text'() {
+    setup:
     def text = ''
+    when:
     RegistryEntry entry = reader.read(text)
+    then:
     assert entry.parent == null : 'Root entry should not have a parent'
     assert entry.children.size() == 0 : 'Root entry child count'
     assert entry.indent == -1 : 'Root entry indent'
     assert entry.line == '' : 'Root entry line'
   }
 
-  @Test void testReadNull() {
+  def 'can read null text'() {
+    setup:
     def text = null
+    when:
     RegistryEntry entry = reader.read(text)
+    then:
     assert entry.parent == null : 'Root entry should not have a parent'
     assert entry.children.size() == 0 : 'Root entry child count'
     assert entry.indent == -1 : 'Root entry indent'
