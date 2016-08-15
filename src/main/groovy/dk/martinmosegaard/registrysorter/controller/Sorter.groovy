@@ -16,7 +16,10 @@ class Sorter implements Comparator<RegistryEntry> {
 
   @Override
   int compare(RegistryEntry e1, RegistryEntry e2) {
-    e1.line.toLowerCase().compareTo(e2.line.toLowerCase())
+    def firstLine = QuoteHandler.removeQuotes(e1.line)
+    def secondLine = QuoteHandler.removeQuotes(e2.line)
+
+    firstLine.toLowerCase().compareTo(secondLine.toLowerCase())
   }
 
 }
