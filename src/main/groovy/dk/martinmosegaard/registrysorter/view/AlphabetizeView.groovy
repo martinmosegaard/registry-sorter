@@ -6,11 +6,14 @@ import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
 
 import javax.swing.JButton
+import javax.swing.JEditorPane
 import javax.swing.JFrame
 import javax.swing.JPanel
 import javax.swing.JScrollPane
-import javax.swing.JTextArea
 import javax.swing.WindowConstants
+import javax.swing.text.Document
+import javax.swing.text.Element
+import javax.swing.text.rtf.RTFEditorKit
 
 import dk.martinmosegaard.registrysorter.controller.Alphabetizer
 
@@ -22,7 +25,7 @@ class AlphabetizeView extends JFrame {
   private static final long serialVersionUID = 1
 
   private final JButton alphabetizeButton
-  private final JTextArea textArea
+  private final JEditorPane editor
   def alphabetizer = new Alphabetizer()
 
   AlphabetizeView(String title) {
@@ -39,9 +42,13 @@ class AlphabetizeView extends JFrame {
     topPanel.layout = new BorderLayout()
     contentPane.add(topPanel, BorderLayout.CENTER)
 
-    textArea = new JTextArea()
+    RTFEditorKit rtf = new RTFEditorKit()
+    editor = new JEditorPane()
+    editor.editorKit = rtf
+    editor.background = Color.white
+
     JScrollPane scroller = new JScrollPane()
-    scroller.viewport.add(textArea)
+    scroller.viewport.add(editor)
     topPanel.add(scroller, BorderLayout.CENTER)
 
     setListener()
@@ -51,11 +58,23 @@ class AlphabetizeView extends JFrame {
     alphabetizeButton.addActionListener(new ActionListener() {
       @Override
       void actionPerformed(ActionEvent event) {
-        String text = textArea.text
-        String sortedText = alphabetizer.alphabetize(text)
-        textArea.text = sortedText
+        printText()
+        // TODO: Sort text
+//        String text = textArea.text
+//        String sortedText = alphabetizer.alphabetize(text)
+//        textArea.text = sortedText
       }
     })
   }
 
+  void printText() {
+    Document doc = editor.document
+    Element root = doc.defaultRootElement
+    for (int i = 0; i < root.elementCount; ++i) {
+      Element element = root.getElement(i)
+      int start = element.startOffset
+      int end = element.endOffset
+      println(doc.getText(start, end - start))
+    }
+  }
 }
