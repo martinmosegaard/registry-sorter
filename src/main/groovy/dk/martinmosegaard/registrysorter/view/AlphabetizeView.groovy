@@ -16,6 +16,7 @@ import javax.swing.text.Element
 import javax.swing.text.rtf.RTFEditorKit
 
 import dk.martinmosegaard.registrysorter.controller.Alphabetizer
+import dk.martinmosegaard.registrysorter.controller.Reader
 
 /**
  * Main application window.
@@ -74,7 +75,8 @@ class AlphabetizeView extends JFrame {
       Element element = root.getElement(i)
       int start = element.startOffset
       int end = element.endOffset
-      println(doc.getText(start, end - start))
+      String line = doc.getText(start, end - start)
+      println('[' + Reader.countLeadingSpaces(line) + '] ' + line)
     }
   }
 }
