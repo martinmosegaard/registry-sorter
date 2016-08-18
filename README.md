@@ -1,7 +1,7 @@
 # registry-sorter
 Sorts lines of text based on indentation.
 
-[!Build Status](https://travis-ci.org/martinmosegaard/registry-sorter.svg?branch=master)(https://travis-ci.org/martinmosegaard/registry-sorter)
+[![Build Status](https://travis-ci.org/martinmosegaard/registry-sorter.svg?branch=master)](https://travis-ci.org/martinmosegaard/registry-sorter)
 
 ## Usage
 
