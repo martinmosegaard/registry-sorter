@@ -1,10 +1,9 @@
 plugins {
+  id 'application'
+  id 'codenarc'
+  id 'groovy'
   id 'net.saliman.cobertura' version '2.3.2'
 }
-
-apply plugin: 'application'
-apply plugin: 'codenarc'
-apply plugin: 'groovy'
 
 repositories {
   jcenter()
