@@ -23,3 +23,7 @@ $ ./gradlew check
 $ open build/reports/codenarc/main.html
 $ open build/reports/codenarc/test.html
 ```
+
+## CI
+
+https://travis-ci.org/martinmosegaard/registry-sorter
