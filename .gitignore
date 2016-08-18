@@ -8,5 +8,3 @@ build/
 .settings/
 bin/
 
-# Program output
-doc/input-example.txt.sorted
