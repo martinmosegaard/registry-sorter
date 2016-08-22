@@ -3,6 +3,7 @@ plugins {
   id 'codenarc'
   id 'groovy'
 
+  id 'com.github.ben-manes.versions' version '0.13.0'
   id 'com.github.kt3k.coveralls' version '2.6.3'
   id 'net.saliman.cobertura' version '2.3.2'
 }
@@ -15,9 +16,9 @@ dependencies {
   compile 'ch.qos.logback:logback-classic:1.1.7'
   compile 'ch.qos.logback:logback-core:1.1.7'
   compile 'org.codehaus.groovy:groovy-all:2.4.7'
-  compile 'org.slf4j:slf4j-api:1.7.20'
+  compile 'org.slf4j:slf4j-api:1.7.21'
 
-  testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+  testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-2'
 }
 
 sourceCompatibility = 1.8
@@ -43,4 +44,8 @@ cobertura {
 
 codenarc {
   config = project.resources.text.fromFile('config/codenarc/codenarc.groovy')
+}
+
+dependencyUpdates {
+  revision = 'release'
 }
