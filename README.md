@@ -2,8 +2,8 @@
 Sorts lines of text based on indentation.
 
 <span class="badges">
-[![Build Status](https://travis-ci.org/martinmosegaard/registry-sorter.svg?branch=master)](https://travis-ci.org/martinmosegaard/registry-sorter)[travis]
-[![Coverage Status](https://coveralls.io/repos/martinmosegaard/registry-sorter/badge.png)][coveralls]
+[![Build Status](https://travis-ci.org/martinmosegaard/registry-sorter.svg?branch=master)](https://travis-ci.org/martinmosegaard/registry-sorter)
+[![Coverage Status](https://coveralls.io/repos/martinmosegaard/registry-sorter/badge.png)](https://coveralls.io/github/martinmosegaard/registry-sorter)
 </span>
 
 ## Usage
