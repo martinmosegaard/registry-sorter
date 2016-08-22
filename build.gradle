@@ -2,6 +2,8 @@ plugins {
   id 'application'
   id 'codenarc'
   id 'groovy'
+
+  id 'com.github.kt3k.coveralls' version '2.6.3'
   id 'net.saliman.cobertura' version '2.3.2'
 }
 
@@ -35,6 +37,8 @@ cobertura {
     '.*dk.martinmosegaard.registrysorter.view.*',
     '.*dk.martinmosegaard.registrysorter.Main'
   ]
+  coverageFormats = [ 'html', 'xml' ] // coveralls depends on xml report
+  coverageSourceDirs = sourceSets.main.groovy.srcDirs
 }
 
 codenarc {
