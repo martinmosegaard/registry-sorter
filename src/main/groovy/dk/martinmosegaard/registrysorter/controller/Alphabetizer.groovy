@@ -25,9 +25,14 @@ class Alphabetizer {
   /**
    * Alphabetize RTF text.
    */
-  void alphabetize(Document document) {
+  Document alphabetize(Document document) {
     def reader = new Reader()
-    reader.read(document)
+    RegistryEntry rootEntry = reader.read(document)
+    def sorter = new Sorter()
+    sorter.sort(rootEntry)
+    def writer = new Writer()
+    Document sortedDocument = writer.write(rootEntry, document)
+    sortedDocument
   }
 
 }

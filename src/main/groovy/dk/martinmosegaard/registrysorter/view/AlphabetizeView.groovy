@@ -58,7 +58,8 @@ class AlphabetizeView extends JFrame {
       @Override
       void actionPerformed(ActionEvent event) {
         Document document = editor.document
-        alphabetizer.alphabetize(document)
+        Document sortedDocument = alphabetizer.alphabetize(document)
+        editor.document = sortedDocument
       }
     })
   }
