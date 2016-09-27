@@ -111,7 +111,7 @@ a'''
     setup:
     def text = null
     when:
-    RegistryEntry entry = reader.read(text)
+    RegistryEntry entry = reader.read((String) text)
     then:
     assert entry.parent == null : 'Root entry should not have a parent'
     assert entry.children.size() == 0 : 'Root entry child count'
