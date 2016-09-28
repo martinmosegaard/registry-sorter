@@ -42,6 +42,9 @@ class Writer {
   }
 
   void write(RegistryEntry entry, Document document, Document originalDocument) {
+    entry.children.reverseEach { RegistryEntry child ->
+      write(child, document, originalDocument)
+    }
     Element element = entry.element
     if (element) {
       def leafSpecs = []
@@ -56,9 +59,6 @@ class Writer {
         leafSpecs.add(spec)
       }
       document.insert(0, leafSpecs as ElementSpec[])
-    }
-    entry.children.reverseEach { RegistryEntry child ->
-      write(child, document, originalDocument)
     }
   }
 
