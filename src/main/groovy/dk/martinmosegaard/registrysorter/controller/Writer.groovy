@@ -53,7 +53,7 @@ class Writer {
         AttributeSet attributes = leafElement.attributes
         int start = leafElement.startOffset
         int end = leafElement.endOffset
-        String line = originalDocument.getText(start, end - start).trim()
+        String line = originalDocument.getText(start, end - start)
         ElementSpec spec = new ElementSpec(attributes, ElementSpec.ContentType,
             line.toCharArray(), 0, line.length())
         leafSpecs.add(spec)
