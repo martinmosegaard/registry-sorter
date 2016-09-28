@@ -57,7 +57,7 @@ class Writer {
       }
       document.insert(0, leafSpecs as ElementSpec[])
     }
-    entry.children.each { RegistryEntry child ->
+    entry.children.reverseEach { RegistryEntry child ->
       write(child, document, originalDocument)
     }
   }
