@@ -72,9 +72,9 @@ class Reader {
       Element branchElement = rootElement.getElement(i)
       int start = branchElement.startOffset
       int end = branchElement.endOffset
-      String line = document.getText(start, end - start).trim()
+      String line = document.getText(start, end - start)
 
-      if (!line) {
+      if (!line.trim()) {
         continue
       }
 
