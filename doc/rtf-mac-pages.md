@@ -1,5 +1,10 @@
 # Test with Pages on Mac
 
+## Inserting text
+
+Inserting leaf elements only does not work with newlines. Take a look at this:
+http://www.comp.nus.edu.sg/~cs3283/ftp/Java/swingConnect/text/element_buffer/element_buffer.html
+
 ## Reading a document
 
 The root element contains `BranchElement`s, which contain `LeafElement`s.
