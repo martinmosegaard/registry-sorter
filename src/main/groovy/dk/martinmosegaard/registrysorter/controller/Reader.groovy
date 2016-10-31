@@ -66,9 +66,6 @@ class Reader {
     List<RegistryEntry> currentEntries = currentParent.children
     RegistryEntry lastEntry = null
 
-    println '>>> reader'
-    document.dump(System.out)
-    println '<<< reader'
     Element rootElement = document.defaultRootElement
 
     for (int i = 0; i < rootElement.elementCount; ++i) {
