@@ -10,7 +10,7 @@ Sorts lines of text based on indentation.
 
 ```sh
 $ ./gradlew installDist
-$ build/install/registry-sorter/bin/registry-sorter
+$ ./build/install/registry-sorter/bin/registry-sorter
 ```
 
 ## Test

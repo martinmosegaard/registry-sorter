@@ -4,7 +4,7 @@ plugins {
   id 'groovy'
 
   id 'com.github.ben-manes.versions' version '0.13.0'
-  id 'com.github.kt3k.coveralls' version '2.6.3'
+  id 'com.github.kt3k.coveralls' version '2.7.0'
   id 'net.saliman.cobertura' version '2.3.2'
 }
 
@@ -13,9 +13,10 @@ repositories {
 }
 
 dependencies {
+  compile 'ch.qos.logback:logback-classic:1.1.7'
   compile 'org.codehaus.groovy:groovy-all:2.4.7'
 
-  testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-2'
+  testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-3'
 }
 
 sourceCompatibility = 1.8
