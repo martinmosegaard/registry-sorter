@@ -3,9 +3,9 @@ plugins {
   id 'codenarc'
   id 'groovy'
 
-  id 'com.github.ben-manes.versions' version '0.13.0'
-  id 'com.github.kt3k.coveralls' version '2.7.1'
-  id 'net.saliman.cobertura' version '2.3.2'
+  id 'com.github.ben-manes.versions' version '0.14.0'
+  id 'com.github.kt3k.coveralls' version '2.8.1'
+  id 'net.saliman.cobertura' version '2.4.0'
 }
 
 repositories {
@@ -13,8 +13,8 @@ repositories {
 }
 
 dependencies {
-  compile 'ch.qos.logback:logback-classic:1.1.7'
-  compile 'org.codehaus.groovy:groovy-all:2.4.7'
+  compile 'ch.qos.logback:logback-classic:1.2.1'
+  compile 'org.codehaus.groovy:groovy-all:2.4.9'
 
   testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-3'
 }
